@@ -2,26 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/tags/ballerina/</loc>
+    <loc>http://poorna2152.github.io/blog/tags/ballerina/</loc>
     <lastmod>2022-05-15T11:30:03+05:30</lastmod>
   </url><url>
-    <loc>http://example.org/</loc>
+    <loc>http://poorna2152.github.io/blog/</loc>
     <lastmod>2022-05-15T11:30:03+05:30</lastmod>
   </url><url>
-    <loc>http://example.org/posts/</loc>
+    <loc>http://poorna2152.github.io/blog/posts/</loc>
     <lastmod>2022-05-15T11:30:03+05:30</lastmod>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>http://poorna2152.github.io/blog/tags/</loc>
     <lastmod>2022-05-15T11:30:03+05:30</lastmod>
   </url><url>
-    <loc>http://example.org/tags/wasm/</loc>
+    <loc>http://poorna2152.github.io/blog/tags/wasm/</loc>
     <lastmod>2022-05-15T11:30:03+05:30</lastmod>
   </url><url>
-    <loc>http://example.org/posts/wasm-backend/</loc>
+    <loc>http://poorna2152.github.io/blog/posts/wasm-backend/</loc>
     <lastmod>2022-05-15T11:30:03+05:30</lastmod>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>http://poorna2152.github.io/blog/categories/</loc>
   </url><url>
-    <loc>http://example.org/posts/</loc>
+    <loc>http://poorna2152.github.io/blog/posts/</loc>
   </url>
 </urlset>
