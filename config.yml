@@ -1,4 +1,4 @@
-baseURL: " http://poorna2152.github.io/blog/"
+baseURL: "http://poorna2152.github.io/blog/"
 languageCode: 'en-us'
 title: 'Poorna Gunathilaka'
 theme: "hugo-PaperMod"
