@@ -18,7 +18,7 @@ ShowBreadCrumbs: true
 ShowPostNavLinks: true
 ShowRssButtonInSectionTermList: true
 cover:
-    image: "/img/cover-wasm.png" # image path/url
+    image: "/blog/img/cover-wasm.png" # image path/url
     alt: "Cover Photo" # alt text
     relative: false # when using page bundles set this to true
     hidden: false # only hide on current single page
@@ -39,7 +39,7 @@ Our plan is to emit the wasm text format and compile it to binary format using t
 Since nBallerina compiler is yet to have a Foreign Function Interface we could not directly call the Binaryen C-API from the Ballerina code to produce wasm. Thus what we decided was to create a Ballerina module replicating the functionality of the Binaryen C-API. The functions in this module are then called to emit the wasm Text Format. 
 nBallerina compiler frontend emits the Ballerina Intermediate Representation(BIR) which is then consumed by the backend to generate LLVM. This BIR is also taken as the input for the new wasm  backend. The generated wat file is converted to binary format using the Binaryen Optimizer tool which optimizes the code as well as outputs the binary format. Then the generated wasm file is run using a Javascript file.
 
-![Flow](/img/flow.png)
+![Flow](/blog/img/flow.png)
 
 The Ballerina Intermediate representation is an unstructured control flow graph, but wasm is a structured control flow graph. Initially in the subset01 we were using the Relooper algorithm to convert the unstructured BIR to structured format. But later we added structured information to the BIR using a concept of Regions thus allowing us to remove the use of the Relooper algorithm.
 
@@ -73,7 +73,7 @@ Let's consider the following simple program.
 
 For this program the blocks in BIR representation and the corresponding WAT instructions are as follows.
 
-![BIR](/img/bir.png)
+![BIR](/blog/img/bir.png)
 
 The `(%number)` format in the above represents a register number in the ballerina. The registers are mapped to local variables in wasm function. The complete code looks like this.
 
@@ -127,7 +127,7 @@ In nBallerina a variable of type `any` is represented with the LLVM type `i64`. 
 
 Since `integers` are also assigned to `any`, what if we want to assign an integer whose binary representation uses more than 56 bits to a variable of type `any`. In this case nBallerina stores the actual value in the memory and then gets the memory address and stores this memory address in the first 56 bits. There is also a bit in the tag to represent whether the value is an immediate or a memory stored one.
 
-![tagging](/img/tag.png)
+![tagging](/blog/img/tag.png)
 
 Wasm has type `i64` and it also has a memory to which we can store and retrieve values. So we should be able to replicate this in the wasm side right? Unfortunately no.
  
@@ -138,13 +138,13 @@ However wasm already has a Garbage Collection(GC) proposal. Even though this is 
 
 Numerical values which can be represented using 31 bits can be stored in an `i31`. `i31ref` is capable of storing references in the form of offsets in wasm linear memory, as well as numbers. Storing numbers in an `i31ref`, instead of wrapping in a `struct`, allows faster retrieval because it lives in the stack. So the plan was to use `i31` to store `booleans`, `struct` to store `ints` and `null` to store `null`. So the wasm type of a variable of type `any` would be a reference type (type `eqref` in wasm).
 
-![tagging an int](/img/tagint.png)
+![tagging an int](/blog/img/tagint.png)
 
 When a variable is to be assigned to a variable of type `any` it is converted to the respective reference type. As per the above diagram  the `int x` is converted to a reference type `struct` using the `int_to_tagged()` function. We can give a type name, field type and field names when defining a struct. In this case it is a struct of type `$BoxedInt` with a field i64 to store the `int` value. 
 
 In subset 02 `println` function  was called with a variable of type `any`. When `println` is called with a value of simple basic type it is first converted to `any` type. Then in Javascript side `console.log` checks for the type of the reference it got and retrieves the value accordingly. The functions for converting to `any` type, retrieving the original value back from `any` type and retrieving the runtime type of `any` variable are implemented in wasm and exported to Javascript so it can use them as necessary.
 
-![println](/img/println.png)
+![println](/blog/img/println.png)
 
 This project is still going and currently I have finished subset03 of the language.
 The progress I have made so far has been with the help of my mentor Manuranga Perera, nBallerina team lead James Clark and the nBallerina team.
