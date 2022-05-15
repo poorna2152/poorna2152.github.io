@@ -1,4 +1,4 @@
-baseURL: "http://example.org/"
+baseURL: " http://poorna2152.github.io/blog/"
 languageCode: 'en-us'
 title: 'Poorna Gunathilaka'
 theme: "hugo-PaperMod"
@@ -17,8 +17,7 @@ minify:
 
 params:
     env: production 
-    title: ExampleSite
-    description: "ExampleSite description"
+    title: Poorna Gunathilaka
     keywords: [Blog, Portfolio, PaperMod]
     author: Me
     DateFormat: "January 2, 2006"
