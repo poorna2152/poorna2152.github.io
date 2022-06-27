@@ -1,6 +1,6 @@
 ---
 title: "WebAssembly backend for Ballerina"
-date: 2022-05-15T11:30:03+05:30
+date: 2022-06-27T15:30:03+05:30
 tags: ["wasm", "ballerina"]
 author: "Me"
 showToc: true
@@ -146,15 +146,16 @@ In subset 02 `println` function  was called with a variable of type `any`. When 
 
 ![println](/blog/img/println.png)
 
-This project is still going and currently I have finished subset03 of the language.
+This project is still going and currently I have finished subset09 of the language. I will cover more about my implementation of lists, maps and records in future articles.
 The progress I have made so far has been with the help of my mentor Manuranga Perera, nBallerina team lead James Clark and the nBallerina team.
 
 ### References
 1.	Repository: https://github.com/poorna2152/nballerina
-2.  Current Branch: https://github.com/poorna2152/nballerina/tree/wback_subset04
-3.	nBallerina runtime document: https://github.com/poorna2152/nballerina/blob/main/docs/rtvalue.md
-4.	Wasm use cases: https://madewithwebassembly.com/
-5.	Wasm compilers: https://github.com/appcypher/awesome-wasm-langs
-6.	https://blog.container-solutions.com/webassembly-in-the-cloud
+2.  nBallerina repository: https://github.com/ballerina-platform/nballerina
+3.  nBallerina wasm branch: https://github.com/ballerina-platform/nballerina/tree/wasm
+4.	nBallerina runtime document: https://github.com/poorna2152/nballerina/blob/main/docs/rtvalue.md
+5.	Wasm use cases: https://madewithwebassembly.com/
+6.	Wasm compilers: https://github.com/appcypher/awesome-wasm-langs
+7.	https://blog.container-solutions.com/webassembly-in-the-cloud
 
 
