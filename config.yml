@@ -1,4 +1,4 @@
-baseURL: "http://poorna2152.github.io/blog/"
+baseURL: "http://poorna2152.github.io/"
 languageCode: 'en-us'
 title: 'Poorna Gunathilaka'
 theme: "hugo-PaperMod"
@@ -83,7 +83,7 @@ params:
         hiddenInSingle: true # hide on single page
 
     editPost:
-        URL: "https://github.com/poorna2152/blog/tree/main/content"
+        URL: "https://github.com/poorna2152/tree/main/content"
         Text: "Suggest Changes" # edit text
         appendFilePath: true # to append file path to Edit link
 
