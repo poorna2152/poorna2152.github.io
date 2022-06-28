@@ -18,7 +18,7 @@ ShowBreadCrumbs: true
 ShowPostNavLinks: true
 ShowRssButtonInSectionTermList: true
 cover:
-    image: "https://github.com/poorna2152/poorna2152.github.io/blob/main/static/img/cover-wasm.png" # image path/url
+    image: "/img/cover-wasm.png" # image path/url
     alt: "Cover Photo" # alt text
     relative: false # when using page bundles set this to true
     hidden: false # only hide on current single page
