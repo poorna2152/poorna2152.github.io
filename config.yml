@@ -59,7 +59,7 @@ params:
     # home-info mode
     homeInfoParams:
         Title: "Hi there \U0001F44B"
-        Content: "Welcome to my blog!. I am Poorna Gunathilaka third year undergraduate of the Department of Computer Science University of Moratuwa."
+        Content: "Welcome to my blog. I’m Poorna Gunathilaka, currently pursuing a PhD in Computer Science at Virginia Tech. Here, I share my research, projects, and thoughts."
 
     socialIcons:
         - name: stackoverflow
