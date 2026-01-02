@@ -1,0 +1,71 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} | {{ .Site.Title }}">
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<article class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <h1 class="mb-3">{{ .Title }}</h1>
+                
+                <div class="mb-3">
+                    <span class="text-muted">
+                        <small>{{ .PublishDate.Format "January 2, 2006" }} | By {{ .Params.author | default "Author" }}</small>
+                    </span>
+                </div>
+
+                {{ if .Params.tags }}
+                <div class="mb-4">
+                    {{ range .Params.tags }}
+                    <span class="badge bg-secondary me-1">{{ . }}</span>
+                    {{ end }}
+                </div>
+                {{ end }}
+
+                <hr class="my-4">
+
+                <div class="post-content">
+                    {{ .Content }}
+                </div>
+
+                <hr class="my-4">
+
+                <div class="mt-5">
+                    <div class="row">
+                        {{ if .PrevInSection }}
+                        <div class="col-md-6 mb-3">
+                            <a href="{{ .PrevInSection.RelPermalink }}" class="text-decoration-none">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <small class="text-muted">← Previous Post</small>
+                                        <h6 class="card-title">{{ .PrevInSection.Title }}</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {{ end }}
+
+                        {{ if .NextInSection }}
+                        <div class="col-md-6 mb-3">
+                            <a href="{{ .NextInSection.RelPermalink }}" class="text-decoration-none ms-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <small class="text-muted">Next Post →</small>
+                                        <h6 class="card-title">{{ .NextInSection.Title }}</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+{{ end }}

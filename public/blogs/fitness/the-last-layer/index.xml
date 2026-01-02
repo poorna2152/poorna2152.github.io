@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Last Layer: Rethinking My Fitness, From Cholesterol to VO2 Max on Poorna Gunathilaka</title>
+    <link>http://localhost:3000/blogs/fitness/the-last-layer/</link>
+    <description>Recent content in The Last Layer: Rethinking My Fitness, From Cholesterol to VO2 Max on Poorna Gunathilaka</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="http://localhost:3000/blogs/fitness/the-last-layer/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

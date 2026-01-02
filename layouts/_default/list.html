@@ -1,0 +1,105 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
+<style>
+  .blog-section { margin-bottom: 4rem; }
+  .blog-section h3 { font-weight: 600; margin-bottom: 2rem; color: #fff; }
+  .card { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
+  .card-title { color: #fff; }
+  .card-text { color: #e0e0e0; }
+  .badge { background-color: #007bff !important; }
+</style>
+{{ end }}
+
+{{ define "title" }}
+{{.Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">{{ .Title }}</h2>
+        
+        <!-- Tech Posts -->
+        <div class="blog-section">
+            <h3 class="text-left">📚 Tech Posts</h3>
+            <div class="row justify-content-center">
+                {{ $found := false }}
+                {{ range .Site.AllPages }}
+                    {{ if .File }}
+                        {{ if in .File.Dir "blogs/tech" }}
+                            {{ $found = true }}
+                        <div class="col-lg-8 col-md-10 col-sm-12 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                {{ if .Params.image }}
+                                <img src="{{ .Params.image }}" class="card-img-top" alt="{{ .Title }}" style="height: 250px; object-fit: cover;">
+                                {{ end }}
+                                <div class="card-body">
+                                    <a href="{{ .Permalink }}" class="text-decoration-none">
+                                        <h5 class="card-title">{{ .Title }}</h5>
+                                    </a>
+                                    <div class="mb-2">
+                                        {{ range .Params.tags }}
+                                        <span class="badge me-1">{{ . }}</span>
+                                        {{ end }}
+                                    </div>
+                                    <p class="card-text text-muted">
+                                        <small>{{ .PublishDate.Format "January 2, 2006" }} | By {{ .Params.author | default "Author" }}</small>
+                                    </p>
+                                    <p class="card-text">{{ .Summary }}</p>
+                                    <a href="{{ .Permalink }}" class="btn btn-sm btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    {{ end }}
+                    {{ end }}
+                {{ end }}
+                {{ if not $found }}<br>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- Fitness Posts -->
+        <div class="blog-section">
+            <h3 class="text-left">💪 Fitness Posts</h3>
+            <div class="row justify-content-center">
+                {{ $found := false }}
+                {{ range .Site.AllPages }}
+                    {{ if .File }}
+                        {{ if in .File.Dir "blogs/fitness" }}
+                            {{ $found = true }}
+                        <div class="col-lg-8 col-md-10 col-sm-12 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                {{ if .Params.image }}
+                                <img src="{{ .Params.image }}" class="card-img-top" alt="{{ .Title }}" style="height: 250px; object-fit: cover;">
+                                {{ end }}
+                                <div class="card-body">
+                                    <a href="{{ .Permalink }}" class="text-decoration-none">
+                                        <h5 class="card-title">{{ .Title }}</h5>
+                                    </a>
+                                    <div class="mb-2">
+                                        {{ range .Params.tags }}
+                                        <span class="badge me-1">{{ . }}</span>
+                                        {{ end }}
+                                    </div>
+                                    <p class="card-text text-muted">
+                                        <small>{{ .PublishDate.Format "January 2, 2006" }} | By {{ .Params.author | default "Author" }}</small>
+                                    </p>
+                                    <p class="card-text">{{ .Summary }}</p>
+                                    <a href="{{ .Permalink }}" class="btn btn-sm btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    {{ end }}
+                    {{ end }}
+                {{ end }}
+                {{ if not $found }}
+                    <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                        <p class="text-muted">No fitness posts found.</p>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

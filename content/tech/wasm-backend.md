@@ -6,7 +6,7 @@ author: "Me"
 showToc: true
 TocOpen: false
 draft: false
-hidemeta: false
+hidemeta: true
 comments: true
 disableHLJS: true # to disable highlightjs
 disableShare: false

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Compiler on Poorna Gunathilaka</title>
+    <link>http://localhost:3000/tags/compiler/</link>
+    <description>Recent content in Compiler on Poorna Gunathilaka</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jun 2022 15:30:03 +0530</lastBuildDate>
+    <atom:link href="http://localhost:3000/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WebAssembly backend for Ballerina</title>
+      <link>http://localhost:3000/blogs/tech/wasm-backend/</link>
+      <pubDate>Mon, 27 Jun 2022 15:30:03 +0530</pubDate>
+      <guid>http://localhost:3000/blogs/tech/wasm-backend/</guid>
+      <description>&lt;p&gt;Up to recently Javascript has been the only language which we can use to write programs for web browsers. Javascript is not suitable to run resource intensive applications such as AR-VR, video editing and 3D games. WebAssembly (wasm) was initially proposed as a compilation target for higher level languages which enabled them to run on web browsers with the additional performance gains for running computational intensive applications. Tensorflow, Unity, GoogleEarth and many more applications already use wasm to run on web browsers. With the invention of Web Assembly System Interface (WASI) the use cases of wasm have moved beyond the web browser. It is now fast becoming a language which is used for edge computing. Cloudflare workers, Netlify, Fastly provides options to deploy the code as wasm modules. Currently there are wasm compilers for 40+ languages such as C, C++, Java, Rust etc.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

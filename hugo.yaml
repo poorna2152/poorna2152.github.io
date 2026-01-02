@@ -1,0 +1,217 @@
+baseURL: "https://poorna2152.github.io/"
+languageCode: "en-us"
+title: "Poorna Gunathilaka"
+theme: hugo-profile
+
+outputs:
+  home:
+    - "HTML"
+    - "RSS"
+    - "JSON"
+  page:
+    - "HTML"
+    - "RSS"
+
+enableRobotsTXT: true
+
+pagination:
+  pagerSize: 10
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+menu:
+  main:
+    - identifier: blog
+      name: Blog
+      title: Blog posts
+      url: /blogs
+      weight: 1
+
+params:
+  title: "Poorna Gunathilaka"
+  description: "PhD Student specializing in HPC, Compilers & Systems Engineering at Virginia Tech"
+  favicon: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-programmer-mobile-app-development-flaticons-lineal-color-flat-icons.png"
+
+  useBootstrapCDN: false
+  mathjax: false
+  animate: true
+
+  theme:
+    disableThemeToggle: false
+    defaultTheme: "dark"
+
+  font:
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.5
+    textAlign: left
+
+  # Hero Section
+  hero:
+    enable: true
+    intro: "Hi, I'm"
+    title: "Poorna Gunathilaka"
+    subtitle: "PhD Student | HPC & Compiler Engineer | Systems Developer"
+    content: "Exploring high-performance computing, compiler optimization, and heterogeneous systems at Virginia Tech. Passionate about building efficient software that scales."
+    image: "https://avatars.githubusercontent.com/u/47320251?v=4"
+    bottomImage:
+      enable: true
+    roundImage: true
+    button:
+      enable: true
+      name: "Read My Blog"
+      url: "/blogs"
+      download: false
+      newPage: false
+    socialLinks:
+      fontAwesomeIcons:
+        - icon: fab fa-github
+          url: https://github.com/poorna2152
+        - icon: fab fa-linkedin
+          url: https://www.linkedin.com/in/poorna-gunathilaka
+        - icon: fab fa-stack-overflow
+          url: https://stackoverflow.com/users/12458945/poorna
+
+  # About Section
+  about:
+    enable: true
+    title: "About Me"
+    image: "https://avatars.githubusercontent.com/u/47320251?v=4"
+    content: |-
+      I'm a PhD student in Computer Science at Virginia Polytechnic Institute and State University, focusing on High Performance Computing, Compiler Optimization, and Heterogeneous Systems.
+
+      With a strong background in compiler engineering from my work at WSO2, I'm passionate about building efficient systems that leverage modern hardware capabilities like GPUs and accelerators. My research interests span MLIR, OpenMP, SYCL, and GPU portability frameworks.
+
+      Beyond research, I'm an avid blogger and open-source contributor.
+
+    skills:
+      enable: true
+      title: "Technical Skills"
+      items:
+        - "C++ / C"
+        - "CUDA / HIP"
+        - "Python"
+        - "LLVM IR & MLIR"
+        - "TableGen"
+        - "WebAssembly"
+        - "OpenMP / SYCL"
+        - "MPI / GraphBLAS"
+        - "Linux & DevOps"
+        - "Git / Docker / CMake"
+
+  # Experience Section
+  experience:
+    enable: true
+    title: "Professional Experience"
+    items:
+      - company: "Virginia Tech"
+        companyUrl: "https://www.vt.edu"
+        jobs:
+          - name: "PhD Student - Computer Science"
+            date: "Aug 2025 - Present"
+            content: "Conducting research on adaptive work-sharing for CPU-GPU systems using SYCL and OpenMP offloading. Developing metamorphic optimization testing for MLIR. Focus: High Performance Computing, Compiler Optimization, Heterogeneous Systems."
+
+      - company: "WSO2 Lanka Private Limited"
+        companyUrl: "https://wso2.com"
+        jobs:
+          - name: "Software Engineer / Compiler Engineer"
+            date: "Jul 2023 - Aug 2025"
+            content: "Managed the end-to-end lifecycle of the WSO2 Streaming Integrator platform. Developed a VS Code extension to visualize integration flows. Contributed to the Ballerina compiler with improvements to XML operations, type checking, and runtime."
+
+          - name: "Compiler Engineering Intern"
+            date: "Dec 2021 - Aug 2022"
+            content: "Developed a WebAssembly backend for the Ballerina native compiler (nBallerina). Implemented runtime subtyping and leveraged garbage collection and exception handling experimental features of WebAssembly."
+
+      - company: "Google Summer of Code"
+        companyUrl: "https://summerofcode.withgoogle.com"
+        jobs:
+          - name: "Open Source Contributor"
+            date: "2022"
+            content: "Contributed to Google's Carbon Language, resolving a fuzzer runtime bug and improving compiler infrastructure."
+
+  # Education Section
+  education:
+    enable: true
+    title: "Education"
+    index: false
+    items:
+      - title: "PhD in Computer Science"
+        school:
+          name: "Virginia Polytechnic Institute and State University"
+          url: "https://www.vt.edu"
+        location: "Blacksburg, VA"
+        date: "Aug 2025 - Present"
+        content: |-
+          **Focus Areas:**
+          - High Performance Computing
+          - Compiler Optimization
+          - Heterogeneous Systems (CPU-GPU)
+
+      - title: "B.Sc. Engineering (Hons) in Computer Science"
+        school:
+          name: "University of Moratuwa"
+          url: "https://www.moratuwa.ac.lk"
+        location: "Sri Lanka"
+        date: "Aug 2018 - Jul 2023"
+        GPA: "4.05 / 4.2"
+        content: |-
+          **Honors:** Dean's List for all 8 semesters
+
+          **Award:** Virtusa Award - Highest marks in Software Engineering Project (2021)
+
+  # Projects Section
+  projects:
+    enable: true
+    title: "Key Projects"
+    items:
+      - title: "Metamorphic Optimization Testing for MLIR"
+        content: "Developing a fuzzer for the StableHLO dialect in MLIR. Automated the JAX → LLVM IR pipeline to detect optimizer bugs via metamorphic transformations."
+        badges:
+          - "MLIR"
+          - "StableHLO"
+          - "Fuzzing"
+          - "JAX"
+
+      - title: "CoreTSAR / Heterogeneous Scheduler (PhD Research)"
+        content: "Investigating adaptive work-sharing for CPU-GPU systems using SYCL and OpenMP offloading to balance workloads dynamically based on runtime metrics."
+        badges:
+          - "SYCL"
+          - "OpenMP"
+          - "GPU Computing"
+          - "Scheduling"
+
+      - title: "NOMP: GPU Portability Framework"
+        content: "Developed a HIP backend for the NOMP framework to enable portable execution on AMD GPUs. Integrated GraphBLAS kernels and tuned performance to match native CUDA."
+        badges:
+          - "HIP"
+          - "GPU"
+          - "GraphBLAS"
+          - "Performance Tuning"
+
+      - title: "x86 Instruction Emulator"
+        content: "Built a functional C++ emulator for x86 instructions, handling memory addressing modes and flag registers."
+        badges:
+          - "C++"
+          - "x86"
+          - "Assembly"
+          - "Emulation"
+
+      - title: "WebAssembly Backend for Ballerina"
+        content: "Developed a WebAssembly compiler backend for the Ballerina programming language, enabling it to run in web browsers and edge environments."
+        badges:
+          - "WebAssembly"
+          - "Ballerina"
+          - "Compiler"
+
+  # Contact Section
+  contact:
+    enable: true
+    title: "Get In Touch"
+    content: "Feel free to reach out to me via email or connect on social media. I'm always interested in discussing compilers, HPC, and systems engineering."
+    email: "poornag@vt.edu"
+    btnName: "Email Me"
+    btnLink: "mailto:poornag@vt.edu"
+    phone: "+1 540-824-0317"

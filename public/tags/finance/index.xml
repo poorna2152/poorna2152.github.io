@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Finance on Poorna Gunathilaka</title>
+    <link>http://localhost:3000/tags/finance/</link>
+    <description>Recent content in Finance on Poorna Gunathilaka</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:3000/tags/finance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Coming Soon: Financial Content</title>
+      <link>http://localhost:3000/finance/coming-soon/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/finance/coming-soon/</guid>
+      <description>&lt;p&gt;Financial content coming soon! I&amp;rsquo;ll be sharing insights on:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Personal finance strategies&lt;/li&gt;&#xA;&lt;li&gt;Investment approaches&lt;/li&gt;&#xA;&lt;li&gt;Financial independence journey&lt;/li&gt;&#xA;&lt;li&gt;Money management tips&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Stay tuned!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
