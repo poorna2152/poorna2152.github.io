@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:3000/blogs/tech/mlir-performance/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:3000/blogs/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
@@ -9,6 +12,12 @@
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:3000/finance/coming-soon/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3000/tags/compiler/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3000/tags/e-graph/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:3000/finance/</loc>
@@ -26,6 +35,9 @@
     <loc>http://localhost:3000/fitness/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:3000/tags/fuzzer/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:3000/tags/goals/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
@@ -35,10 +47,22 @@
     <loc>http://localhost:3000/tags/independence/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:3000/tags/jax/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3000/tags/mlir/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:3000/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:3000/tags/stablehlo/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:3000/tags/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3000/categories/tech/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:3000/blogs/fitness/the-last-layer/</loc>
@@ -47,16 +71,13 @@
     <loc>http://localhost:3000/fitness/the-last-layer/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:3000/tags/titanfuzz/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:3000/tags/vo2-max/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:3000/tags/ballerina/</loc>
-    <lastmod>2022-06-27T15:30:03+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:3000/tags/compiler/</loc>
-    <lastmod>2022-06-27T15:30:03+05:30</lastmod>
-  </url><url>
-    <loc>http://localhost:3000/categories/tech/</loc>
     <lastmod>2022-06-27T15:30:03+05:30</lastmod>
   </url><url>
     <loc>http://localhost:3000/tech/</loc>

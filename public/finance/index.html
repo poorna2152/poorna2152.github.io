@@ -105,10 +105,21 @@
 <meta name="description" content="Finance of Poorna Gunathilaka">
 <style>
   .blog-section { margin-bottom: 4rem; }
-  .blog-section h3 { font-weight: 600; margin-bottom: 2rem; color: #fff; }
-  .card { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
-  .card-title { color: #fff; }
-  .card-text { color: #e0e0e0; }
+  .blog-section h3 { font-weight: 600; margin-bottom: 2rem; }
+  
+   
+  :root:not([data-theme="light"]) .blog-section h3 { color: #fff; }
+  :root:not([data-theme="light"]) .card { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
+  :root:not([data-theme="light"]) .card-title { color: #fff; }
+  :root:not([data-theme="light"]) .card-text { color: #e0e0e0; }
+  
+   
+  [data-theme="light"] .blog-section h3 { color: #1a1a1a; }
+  [data-theme="light"] .card { border: 1px solid rgba(0,0,0,0.1); background: #ffffff; }
+  [data-theme="light"] .card-title { color: #1a1a1a; }
+  [data-theme="light"] .card-text { color: #333333; }
+  [data-theme="light"] .badge { background-color: #007bff !important; }
+  
   .badge { background-color: #007bff !important; }
 </style>
 
@@ -293,6 +304,90 @@ Finance | Poorna Gunathilaka
                 
                     
                         
+                            
+                        <div class="col-lg-8 col-md-10 col-sm-12 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                
+                                <img src="/img/cover-wasm.png" class="card-img-top" alt="Automated Detection of Performance Regressions in MLIR" style="height: 250px; object-fit: cover;">
+                                
+                                <div class="card-body">
+                                    <a href="http://localhost:3000/blogs/tech/mlir-performance/" class="text-decoration-none">
+                                        <h5 class="card-title">Automated Detection of Performance Regressions in MLIR</h5>
+                                    </a>
+                                    <div class="mb-2">
+                                        
+                                        <span class="badge me-1">mlir</span>
+                                        
+                                        <span class="badge me-1">fuzzer</span>
+                                        
+                                        <span class="badge me-1">stablehlo</span>
+                                        
+                                        <span class="badge me-1">jax</span>
+                                        
+                                        <span class="badge me-1">titanfuzz</span>
+                                        
+                                        <span class="badge me-1">e-graph</span>
+                                        
+                                        <span class="badge me-1">compiler</span>
+                                        
+                                    </div>
+                                    <p class="card-text text-muted">
+                                        <small>January 2, 2026 | By Poorna Gunathilaka</small>
+                                    </p>
+                                    <p class="card-text"><h3 id="what-is-mlir-and-why-does-it-matter">What is MLIR and Why Does It Matter?</h3>
+<p>Compiler infrastructure has historically been fragmented. You had one representation for the high-level language (like the TensorFlow graph) and a completely different one for the low-level machine code (like LLVM IR). Moving between these levels often resulted in lost optimization opportunities.</p>
+<p>MLIR (Multi-Level Intermediate Representation) solves this by providing a single, unified infrastructure. It allows compilers to define &ldquo;dialects&rdquo;—modular levels of abstraction that can mix and match. It serves as the backbone for modern machine learning compilers like XLA (used by TensorFlow, JAX, and PyTorch).</p></p>
+                                    <a href="http://localhost:3000/blogs/tech/mlir-performance/" class="btn btn-sm btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                
+                    
+                        
+                    
+                
+                    
+                
+                    
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
                     
                 
                     
@@ -303,36 +398,6 @@ Finance | Poorna Gunathilaka
                 
                     
                         
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                        
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                        
-                    
-                
-                    
-                        
-                    
-                
                     
                 
                     
@@ -406,23 +471,41 @@ Finance | Poorna Gunathilaka
                     
                 
                     
-                
-                    
-                        
-                    
-                
-                    
                         
                     
                 
                     
                 
                     
+                        
+                    
+                
+                    
                 
                     
                 
                     
                         
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
                     
                 
                     
@@ -441,7 +524,7 @@ Finance | Poorna Gunathilaka
                         <div class="col-lg-8 col-md-10 col-sm-12 mb-4">
                             <div class="card h-100 shadow-sm">
                                 
-                                <img src="img/vo2.png" class="card-img-top" alt="The Last Layer: Rethinking My Fitness, From Cholesterol to VO2 Max" style="height: 250px; object-fit: cover;">
+                                <img src="/img/vo2.png" class="card-img-top" alt="The Last Layer: Rethinking My Fitness, From Cholesterol to VO2 Max" style="height: 250px; object-fit: cover;">
                                 
                                 <div class="card-body">
                                     <a href="http://localhost:3000/blogs/fitness/the-last-layer/" class="text-decoration-none">
@@ -472,8 +555,6 @@ Finance | Poorna Gunathilaka
                 
                     
                         
-                    
-                
                     
                 
                     

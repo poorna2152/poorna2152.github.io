@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3000&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+<link rel="icon" href=https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-programmer-mobile-app-development-flaticons-lineal-color-flat-icons.png type="image/gif">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+</noscript>
+
+
+<link rel="stylesheet" href="/css/font.css" media="all">
+
+
+
+<meta property="og:url" content="http://localhost:3000/blogs/tech/mlir-performance/">
+  <meta property="og:site_name" content="Poorna Gunathilaka">
+  <meta property="og:title" content="Automated Detection of Performance Regressions in MLIR">
+  <meta property="og:description" content="Automated Detection of Performance Regressions in MLIR Optimizations via Metamorphic Testing">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2026-01-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-01-02T00:00:00+00:00">
+    <meta property="article:tag" content="Mlir">
+    <meta property="article:tag" content="Fuzzer">
+    <meta property="article:tag" content="Stablehlo">
+    <meta property="article:tag" content="Jax">
+    <meta property="article:tag" content="Titanfuzz">
+    <meta property="article:tag" content="E-Graph">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Automated Detection of Performance Regressions in MLIR">
+  <meta name="twitter:description" content="Automated Detection of Performance Regressions in MLIR Optimizations via Metamorphic Testing">
+
+
+<link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
+<link rel="stylesheet" href="/css/footer.css" media="all">
+
+
+<link rel="stylesheet" href="/css/theme.css" media="all">
+
+<style>
+    :root {
+        --text-color: #343a40;
+        --text-secondary-color: #6c757d;
+        --text-link-color: #007bff;
+        --background-color: #eaedf0;
+        --secondary-background-color: #64ffda1a;
+        --primary-color: #007bff;
+        --secondary-color: #f8f9fa;
+
+         
+        --text-color-dark: #e4e6eb;
+        --text-secondary-color-dark: #b0b3b8;
+        --text-link-color-dark: #ffffff;
+        --background-color-dark: #18191a;
+        --secondary-background-color-dark: #212529;
+        --primary-color-dark: #ffffff;
+        --secondary-color-dark: #212529;
+    }
+    body {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    html {
+        background-color: var(--background-color) !important;
+    }
+
+    body::-webkit-scrollbar {
+        height: 0px;
+        width: 8px;
+        background-color: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background: #b0b0b0;
+        outline: 1px solid var(--background-color);
+    }
+
+    #search-content::-webkit-scrollbar {
+        width: .5em;
+        height: .1em;
+        background-color: var(--background-color);
+    }
+</style>
+
+
+
+<meta name="description" content="Automated Detection of Performance Regressions in MLIR | Poorna Gunathilaka">
+<style>
+   
+  :root:not([data-theme="light"]) code { background-color: rgba(255,255,255,0.1); color: #e0e0e0; }
+  :root:not([data-theme="light"]) pre { background-color: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); }
+  
+  [data-theme="light"] code { background-color: #f4f4f4; color: #333; }
+  [data-theme="light"] pre { background-color: #f8f8f8; border: 1px solid #ddd; }
+  
+  code { padding: 0.2em 0.4em; border-radius: 3px; }
+  pre { padding: 1em; border-radius: 5px; overflow-x: auto; }
+  
+   
+  .post-content { line-height: 1.8; }
+</style>
+
+
+  
+  
+
+  <title>
+Automated Detection of Performance Regressions in MLIR | Poorna Gunathilaka
+
+  </title>
+</head>
+
+<body class="light">
+  
+  
+<script>
+    let localStorageValue = localStorage.getItem("pref-theme");
+    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    switch (localStorageValue) {
+        case "dark":
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
+            break;
+        case "light":
+            document.body.classList.remove('dark');
+            document.documentElement.classList.remove('dark');
+            break;
+        default:
+            if (mediaQuery) {
+                document.documentElement.classList.add('dark');
+                document.body.classList.add('dark');
+            }
+            break;
+    }
+</script>
+
+
+
+
+
+<header id="profileHeader">
+    <nav class="pt-3 navbar navbar-expand-lg animate">
+        <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
+            
+            <a class="navbar-brand primary-font text-wrap" href="/">
+                
+                <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-programmer-mobile-app-development-flaticons-lineal-color-flat-icons.png" width="30" height="30"
+                    class="d-inline-block align-top">
+                Poorna Gunathilaka
+                
+            </a>
+
+            
+                <div>
+                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block" placeholder='Ctrl &#43; k to Search...'
+                        aria-label="Search" oninput="searchOnChange(event)">
+                </div>
+            
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+                    <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+                </svg>
+            </button>
+
+            
+            <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    
+                        <li class="nav-item navbar-text d-block d-md-none">
+                            <div class="nav-link">
+                                <input id="search" autocomplete="off" class="form-control mr-sm-2" placeholder='Ctrl &#43; k to Search...' aria-label="Search" oninput="searchOnChange(event)">
+                            </div>
+                        </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#about" aria-label="about">
+                            About Me
+                        </a>
+                    </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#experience"
+                            aria-label="experience">
+                            Professional Experience
+                        </a>
+                    </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#education"
+                            aria-label="education">
+                            Education
+                        </a>
+                    </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#projects"
+                            aria-label="projects">
+                            Key Projects
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#contact"
+                            aria-label="contact">
+                            Get In Touch
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    
+                    
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/blogs" title="Blog posts">
+                            
+                            Blog
+                        </a>
+                    </li>
+                    
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        
+                        <div class="text-center">
+                            <button id="theme-toggle">
+                                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                </svg>
+                                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="5"></circle>
+                                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="content">
+<article class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <h1 class="mb-3">Automated Detection of Performance Regressions in MLIR</h1>
+                
+                <div class="mb-3">
+                    <span class="text-muted">
+                        <small>January 2, 2026 | By Poorna Gunathilaka</small>
+                    </span>
+                </div>
+
+                
+                <div class="mb-4">
+                    
+                    <span class="badge bg-secondary me-1">mlir</span>
+                    
+                    <span class="badge bg-secondary me-1">fuzzer</span>
+                    
+                    <span class="badge bg-secondary me-1">stablehlo</span>
+                    
+                    <span class="badge bg-secondary me-1">jax</span>
+                    
+                    <span class="badge bg-secondary me-1">titanfuzz</span>
+                    
+                    <span class="badge bg-secondary me-1">e-graph</span>
+                    
+                    <span class="badge bg-secondary me-1">compiler</span>
+                    
+                </div>
+                
+
+                <hr class="my-4">
+
+                <div class="post-content">
+                    <h3 id="what-is-mlir-and-why-does-it-matter">What is MLIR and Why Does It Matter?</h3>
+<p>Compiler infrastructure has historically been fragmented. You had one representation for the high-level language (like the TensorFlow graph) and a completely different one for the low-level machine code (like LLVM IR). Moving between these levels often resulted in lost optimization opportunities.</p>
+<p>MLIR (Multi-Level Intermediate Representation) solves this by providing a single, unified infrastructure. It allows compilers to define &ldquo;dialects&rdquo;—modular levels of abstraction that can mix and match. It serves as the backbone for modern machine learning compilers like XLA (used by TensorFlow, JAX, and PyTorch).</p>
+<p>When you write code in JAX, it doesn&rsquo;t go straight to machine code. It gets lowered into the <strong>StableHLO</strong> dialect, then usually to the <strong>Linalg</strong> or <strong>Affine</strong> dialects, and finally to LLVM IR or NVVM for hardware execution.</p>
+<p>Because MLIR sits right in the middle of this pipeline, it is the critical path for performance. If an MLIR pass handles a loop inefficiently, the final application runs slowly, regardless of how fast the hardware is.</p>
+<h3 id="the-problem-correctness-vs-performance">The Problem: Correctness vs. Performance</h3>
+<p>Most compiler testing focuses on <strong>correctness</strong>. We run fuzzers to answer the question: <em>&ldquo;Does the compiler crash, or does it produce the wrong number?&rdquo;</em></p>
+<p>However, in High-Performance Computing (HPC), a program that produces the right answer but takes 10x longer to run is effectively broken. These are <strong>Silent Performance Regressions</strong>. They are dangerous because they don&rsquo;t throw errors; they just silently degrade the efficiency of the underlying hardware.</p>
+<p>Detecting them is hard. To test correctness, you just need to check the output. To test performance, you typically need an &ldquo;oracle&rdquo; you need to know exactly how fast the code <em>should</em> run. For random, generated test cases, calculating that theoretical speed is impossible.</p>
+<p>I recently built a framework to automate performance testing for MLIR without needing a ground-truth oracle.</p>
+<h3 id="the-approach-metamorphic-testing">The Approach: Metamorphic Testing</h3>
+<p>Since we can&rsquo;t predict absolute performance for random inputs, we look at relative performance. <strong>Metamorphic Testing</strong> validates the system by checking relationships between different inputs or configurations.</p>
+<p>I defined three Metamorphic Relations (MRs) that a healthy MLIR compiler should satisfy:</p>
+<ol>
+<li><strong>Hardware Offloading:</strong> For sufficient workloads, running on a GPU should be faster than a CPU.</li>
+<li><strong>Polyhedral Optimization:</strong> Code optimized with polyhedral techniques (tiling, fusion, affine transforms) should outperform the scalar CPU baseline.</li>
+<li><strong>Semantic Equivalence:</strong> Mathematically simplified code (e.g., applying the distributive property) should run at least as fast as the unsimplified version.</li>
+</ol>
+<p>If a test case violates these rules—for example, if the GPU code is slower than the CPU code—we flag it as a regression.</p>
+<h3 id="generating-test-cases-with-titanfuzz">Generating Test Cases with TitanFuzz</h3>
+<p>A major bottleneck in compiler testing is generating input programs that are actually useful. Random code generators often produce &ldquo;spaghetti code&rdquo; that lacks the loop structures needed to trigger advanced optimizations.</p>
+<p>To solve this, I extended <strong>TitanFuzz</strong>, an LLM-based fuzzer originally built for PyTorch. I added a JAX backend and fed it kernels from the <strong>PolyBench</strong> suite. This allowed the LLM to generate syntactically valid JAX programs that utilize the <code>StableHLO</code> dialect and contain the nested loops necessary for meaningful performance analysis.</p>
+<p>The system works in three steps:</p>
+<ol>
+<li><strong>Generate:</strong> TitanFuzz creates JAX programs based on PolyBench templates.</li>
+<li><strong>Fork:</strong> The program is compiled down three different paths (Baseline CPU, GPU Offload, Polyhedral via Polygeist).</li>
+<li><strong>Verify:</strong> We execute the binaries and check if the performance relations hold.</li>
+</ol>
+<h3 id="results-and-findings">Results and Findings</h3>
+<p>I evaluated the framework on 45 computational kernels. The data highlighted both successes and failures in the current MLIR ecosystem.</p>
+<p><strong>1. Polyhedral Optimizations are Consistent</strong>
+The relation <code>Time(Polygeist) &lt; Time(Baseline)</code> held up well. Using <strong>Polygeist</strong> to raise code to the Affine dialect consistently improved performance. Speedups ranged from <strong>1.5x</strong> to <strong>8.45x</strong> depending on the kernel&rsquo;s arithmetic intensity.</p>
+<p><strong>2. Semantic Rewrites Work</strong>
+We used <strong>DialEgg</strong>, an equality saturation tool, to rewrite expression trees (e.g., factoring out matrix multiplications). This also passed consistently. The tool correctly identified when to simplify operations, leading to speedups between <strong>1.15x</strong> and <strong>2.48x</strong>.</p>
+<p><strong>3. The GPU &ldquo;Crossover&rdquo; Issue</strong>
+The hardware relation (<code>Time(GPU) &lt; Time(CPU)</code>) revealed a significant issue. We generally assume GPUs are faster, but my testing showed this depends entirely on input size.</p>
+<ul>
+<li><strong>Large Inputs (N=2048):</strong> The GPU path was significantly faster (up to 49x).</li>
+<li><strong>Small Inputs (N=512):</strong> The GPU path was often <strong>slower</strong> than the CPU.</li>
+</ul>
+<p>For example, on the <code>gesummv</code> kernel with small inputs, the GPU version ran at <strong>0.67x</strong> the speed of the CPU version. The overhead of kernel launches and PCIe data transfer outweighed the compute benefits. This is a performance regression because the compiler lowered to the GPU without checking if the workload size justified the cost.</p>
+<h3 id="summary">Summary</h3>
+<p>This project demonstrates that we don&rsquo;t need a theoretical oracle to find performance bugs. By defining simple invariants—like &ldquo;GPU should beat CPU&rdquo;—we can automate the detection of inefficient code generation.</p>
+<p>For the MLIR ecosystem, the next step is implementing size-aware cost models to prevent the regressions I observed in the GPU offloading path.</p>
+
+                </div>
+
+                <hr class="my-4">
+
+                <div class="mt-5">
+                    <div class="row">
+                        
+                        <div class="col-md-6 mb-3">
+                            <a href="/blogs/fitness/the-last-layer/" class="text-decoration-none">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <small class="text-muted">← Previous Post</small>
+                                        <h6 class="card-title">The Last Layer: Rethinking My Fitness, From Cholesterol to VO2 Max</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+  </div><footer>
+    
+ 
+
+<div class="text-center pt-2">
+    
+
+    
+
+    
+
+    
+
+    
+</div><div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            
+                <div class="pb-2">
+                    <a href="http://localhost:3000/" title="Poorna Gunathilaka">
+                        <img alt="Footer logo" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-programmer-mobile-app-development-flaticons-lineal-color-flat-icons.png"
+                            height="40px" width="40px">
+                    </a>
+                </div>
+            
+            &copy; 2026  All Rights Reserved
+            <div class="text-secondary">
+                Made with
+                <span class="text-danger">
+                    &#10084;
+                </span>
+                and
+                <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
+                    title="Designed and developed by gurusabarish">
+                    Hugo Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</footer><script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+<script>
+    if (document.body.className.includes("light")) {
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark');
+        localStorage.setItem("pref-theme", 'dark');
+    }
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            document.documentElement.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+</script>
+
+
+    <script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  <section id="search-content" class="py-2">
+    <div class="container" id="search-results"></div>
+  </section>
+</body>
+
+</html>

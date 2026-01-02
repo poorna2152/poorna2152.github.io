@@ -2,10 +2,20 @@
 <meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
 <style>
   .blog-section { margin-bottom: 4rem; }
-  .blog-section h3 { font-weight: 600; margin-bottom: 2rem; color: #fff; }
-  .card { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
-  .card-title { color: #fff; }
-  .card-text { color: #e0e0e0; }
+  .blog-section h3 { font-weight: 600; margin-bottom: 2rem; }
+  
+  /* Dark theme (when .dark class is present) */
+  .dark .blog-section h3 { color: #fff; }
+  .dark .card { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
+  .dark .card-title { color: #fff; }
+  .dark .card-text { color: #e0e0e0; }
+  
+  /* Light theme (default, when .dark is not present) */
+  .blog-section h3 { color: #1a1a1a; }
+  .card { border: 1px solid rgba(0,0,0,0.1); background: #ffffff; }
+  .card-title { color: #1a1a1a; }
+  .card-text { color: #333333; }
+  
   .badge { background-color: #007bff !important; }
 </style>
 {{ end }}

@@ -9,6 +9,20 @@
     <lastBuildDate>Fri, 02 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:3000/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Compiler</title>
+      <link>http://localhost:3000/tags/compiler/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/tags/compiler/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>E-Graph</title>
+      <link>http://localhost:3000/tags/e-graph/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/tags/e-graph/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Finance</title>
       <link>http://localhost:3000/tags/finance/</link>
       <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
@@ -20,6 +34,13 @@
       <link>http://localhost:3000/tags/fitness/</link>
       <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:3000/tags/fitness/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fuzzer</title>
+      <link>http://localhost:3000/tags/fuzzer/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/tags/fuzzer/</guid>
       <description></description>
     </item>
     <item>
@@ -44,6 +65,34 @@
       <description></description>
     </item>
     <item>
+      <title>Jax</title>
+      <link>http://localhost:3000/tags/jax/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/tags/jax/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mlir</title>
+      <link>http://localhost:3000/tags/mlir/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/tags/mlir/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stablehlo</title>
+      <link>http://localhost:3000/tags/stablehlo/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/tags/stablehlo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Titanfuzz</title>
+      <link>http://localhost:3000/tags/titanfuzz/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/tags/titanfuzz/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>VO2 Max</title>
       <link>http://localhost:3000/tags/vo2-max/</link>
       <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
@@ -55,13 +104,6 @@
       <link>http://localhost:3000/tags/ballerina/</link>
       <pubDate>Mon, 27 Jun 2022 15:30:03 +0530</pubDate>
       <guid>http://localhost:3000/tags/ballerina/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Compiler</title>
-      <link>http://localhost:3000/tags/compiler/</link>
-      <pubDate>Mon, 27 Jun 2022 15:30:03 +0530</pubDate>
-      <guid>http://localhost:3000/tags/compiler/</guid>
       <description></description>
     </item>
     <item>

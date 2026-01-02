@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>E-Graph on Poorna Gunathilaka</title>
+    <link>http://localhost:3000/tags/e-graph/</link>
+    <description>Recent content in E-Graph on Poorna Gunathilaka</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:3000/tags/e-graph/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automated Detection of Performance Regressions in MLIR</title>
+      <link>http://localhost:3000/blogs/tech/mlir-performance/</link>
+      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3000/blogs/tech/mlir-performance/</guid>
+      <description>&lt;h3 id=&#34;what-is-mlir-and-why-does-it-matter&#34;&gt;What is MLIR and Why Does It Matter?&lt;/h3&gt;&#xA;&lt;p&gt;Compiler infrastructure has historically been fragmented. You had one representation for the high-level language (like the TensorFlow graph) and a completely different one for the low-level machine code (like LLVM IR). Moving between these levels often resulted in lost optimization opportunities.&lt;/p&gt;&#xA;&lt;p&gt;MLIR (Multi-Level Intermediate Representation) solves this by providing a single, unified infrastructure. It allows compilers to define &amp;ldquo;dialects&amp;rdquo;—modular levels of abstraction that can mix and match. It serves as the backbone for modern machine learning compilers like XLA (used by TensorFlow, JAX, and PyTorch).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

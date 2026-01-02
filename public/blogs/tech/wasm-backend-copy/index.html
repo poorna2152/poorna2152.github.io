@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=33111&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+<link rel="icon" href=https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-programmer-mobile-app-development-flaticons-lineal-color-flat-icons.png type="image/gif">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Alata&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+</noscript>
+
+
+<link rel="stylesheet" href="/css/font.css" media="all">
+
+
+
+<meta property="og:title" content="WebAssembly backend for Ballerina" />
+<meta property="og:description" content="Developing a WebAssembly compiler backend for the Ballerina programming language" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:33111/blogs/tech/wasm-backend-copy/" /><meta property="article:section" content="blogs" />
+<meta property="article:published_time" content="2022-06-27T15:30:03+05:30" />
+<meta property="article:modified_time" content="2022-06-27T15:30:03+05:30" /><meta property="og:site_name" content="Poorna Gunathilaka" />
+
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="WebAssembly backend for Ballerina"/>
+<meta name="twitter:description" content="Developing a WebAssembly compiler backend for the Ballerina programming language"/>
+
+
+<link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
+<link rel="stylesheet" href="/css/footer.css" media="all">
+
+
+<link rel="stylesheet" href="/css/theme.css" media="all">
+
+<style>
+    :root {
+        --text-color: #343a40;
+        --text-secondary-color: #6c757d;
+        --text-link-color: #007bff;
+        --background-color: #eaedf0;
+        --secondary-background-color: #64ffda1a;
+        --primary-color: #007bff;
+        --secondary-color: #f8f9fa;
+
+         
+        --text-color-dark: #e4e6eb;
+        --text-secondary-color-dark: #b0b3b8;
+        --text-link-color-dark: #ffffff;
+        --background-color-dark: #18191a;
+        --secondary-background-color-dark: #212529;
+        --primary-color-dark: #ffffff;
+        --secondary-color-dark: #212529;
+    }
+    body {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    html {
+        background-color: var(--background-color) !important;
+    }
+
+    body::-webkit-scrollbar {
+        height: 0px;
+        width: 8px;
+        background-color: var(--background-color);
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background: #b0b0b0;
+        outline: 1px solid var(--background-color);
+    }
+
+    #search-content::-webkit-scrollbar {
+        width: .5em;
+        height: .1em;
+        background-color: var(--background-color);
+    }
+</style>
+
+
+
+<meta name="description" content="Developing a WebAssembly compiler backend for the Ballerina programming language">
+<link rel="stylesheet" href="/css/single.css">
+
+
+<script defer src="/fontawesome-6/all-6.4.2.js"></script>
+
+
+  
+  
+
+  <title>
+WebAssembly backend for Ballerina | Poorna Gunathilaka
+
+  </title>
+</head>
+
+<body class="light">
+  
+  
+<script>
+    let localStorageValue = localStorage.getItem("pref-theme");
+    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    switch (localStorageValue) {
+        case "dark":
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
+            break;
+        case "light":
+            document.body.classList.remove('dark');
+            document.documentElement.classList.remove('dark');
+            break;
+        default:
+            if (mediaQuery) {
+                document.documentElement.classList.add('dark');
+                document.body.classList.add('dark');
+            }
+            break;
+    }
+</script>
+
+
+
+
+
+<header id="profileHeader">
+    <nav class="pt-3 navbar navbar-expand-lg animate">
+        <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
+            
+            <a class="navbar-brand primary-font text-wrap" href="/">
+                
+                <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-programmer-mobile-app-development-flaticons-lineal-color-flat-icons.png" width="30" height="30"
+                    class="d-inline-block align-top">
+                Poorna Gunathilaka
+                
+            </a>
+
+            
+                <div>
+                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block" placeholder='Ctrl &#43; k to Search...'
+                        aria-label="Search" oninput="searchOnChange(event)">
+                </div>
+            
+
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+                    <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+                </svg>
+            </button>
+
+            
+            <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    
+                        <li class="nav-item navbar-text d-block d-md-none">
+                            <div class="nav-link">
+                                <input id="search" autocomplete="off" class="form-control mr-sm-2" placeholder='Ctrl &#43; k to Search...' aria-label="Search" oninput="searchOnChange(event)">
+                            </div>
+                        </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#about" aria-label="about">
+                            About Me
+                        </a>
+                    </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#experience"
+                            aria-label="experience">
+                            Experience
+                        </a>
+                    </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#education"
+                            aria-label="education">
+                            Education
+                        </a>
+                    </li>
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#projects"
+                            aria-label="projects">
+                            Featured Projects
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#contact"
+                            aria-label="contact">
+                            Get In Touch
+                        </a>
+                    </li>
+                    
+
+                    
+
+                    
+                    
+                    
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/blogs" title="Blog posts">
+                            
+                            Blog
+                        </a>
+                    </li>
+                    
+                    
+
+                    
+                    <li class="nav-item navbar-text">
+                        
+                        <div class="text-center">
+                            <button id="theme-toggle">
+                                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                </svg>
+                                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="5"></circle>
+                                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="content">
+<section id="single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="pr-lg-4">
+          <div class="title mb-5">
+            <h1 class="text-center mb-4">WebAssembly backend for Ballerina</h1>
+            <div class="text-center">
+              
+                Poorna Gunathilaka
+                <small>|</small>
+              
+              Jun 27, 2022
+
+              
+              <span id="readingTime">
+                min read
+              </span>
+              
+            </div>
+          </div>
+          
+          <div class="featured-image">
+            <img class="img-fluid mx-auto d-block" src="/img/cover-wasm.png" alt="WebAssembly backend for Ballerina">
+          </div>
+          
+          <article class="page-content  p-2">
+          <p>Up to recently Javascript has been the only language which we can use to write programs for web browsers. Javascript is not suitable to run resource intensive applications such as AR-VR, video editing and 3D games. WebAssembly (wasm) was initially proposed as a compilation target for higher level languages which enabled them to run on web browsers with the additional performance gains for running computational intensive applications. Tensorflow, Unity, GoogleEarth and many more applications already use wasm to run on web browsers. With the invention of Web Assembly System Interface (WASI) the use cases of wasm have moved beyond the web browser. It is now fast becoming a language which is used for edge computing. Cloudflare workers, Netlify, Fastly provides options to deploy the code as wasm modules. Currently there are wasm compilers for 40+ languages such as C, C++, Java, Rust etc.</p>
+<p>My internship project is to develop a backend for nBallerina compiler for generating wasm. Ballerina is an open source programming language designed specifically for writing distributed applications. nBallerina is the native compiler of the Ballerina language which is developed incrementally in subsets. Each subset adds a set of features to the language. Having a wasm backend for the Ballerina language provides the capability for it to run in a web browser and in standalone Javascript runtimes such as Node.</p>
+<h2 id="plan-for-wasm-backend">Plan for WASM Backend</h2>
+<p>WebAssembly has two formats. The binary format and the text format. Text format (wat) is a human readable format.
+Our plan is to emit the wasm text format and compile it to binary format using the Binaryen tool. Binaryen is a compiler and toolchain infrastructure library for WebAssembly which provides a C-API which can be used to generate wasm and it also provides tools which can be used to convert the wasm text format to binary format.
+Since nBallerina compiler is yet to have a Foreign Function Interface we could not directly call the Binaryen C-API from the Ballerina code to produce wasm. Thus what we decided was to create a Ballerina module replicating the functionality of the Binaryen C-API. The functions in this module are then called to emit the wasm Text Format.</p>
+<p>nBallerina compiler frontend emits the Ballerina Intermediate Representation(BIR) which is then consumed by the backend to generate LLVM. This BIR is also taken as the input for the new wasm backend. The generated wat file is converted to binary format using the Binaryen Optimizer tool which optimizes the code as well as outputs the binary format. Then the generated wasm file is run using a Javascript file.</p>
+<p><img src="/img/flow.png" alt="Flow"></p>
+<p>The Ballerina Intermediate representation is an unstructured control flow graph, but wasm is a structured control flow graph. Initially in the subset01 we were using the Relooper algorithm to convert the unstructured BIR to structured format. But later we added structured information to the BIR using a concept of Regions thus allowing us to remove the use of the Relooper algorithm.</p>
+<p>Another simple approach to generate wasm would have been to use the LLVM emitted from the existing nBallerina backend and convert this to wasm. This is a straightforward conversion but we are not doing this because if we are to directly convert LLVM to wasm we might not be able to benefit from the higher level constructs that wasm provides for us such as Garbage collection (You&rsquo;ll see why later in the article).</p>
+<h2 id="implementation-of-subset01">Implementation of subset01</h2>
+<p>Subset01 of the language consist of:</p>
+<ul>
+<li>Types: <code>Boolean</code>, <code>Integers</code></li>
+<li>Constructs: if-else and while, break, continue</li>
+<li>function println</li>
+</ul>
+<p>wasm has integer types <code>i32</code> and <code>i64</code>. Ballerina <code>booleans</code> are mapped to an <code>i32</code> and <code>integers</code> are mapped to <code>i64s</code> in the wasm.
+In subset01 <code>println</code> function is called with an <code>i64</code> value. <code>Println</code> function was implemented using the <code>console.log</code> function in Javascript.</p>
+<p>Let&rsquo;s consider the following simple program:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#f92672">import</span> <span style="color:#a6e22e">ballerina</span><span style="color:#f92672">/</span><span style="color:#a6e22e">io</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">public</span> <span style="color:#a6e22e">function</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span> = <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum</span> = <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">while</span> <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">15</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">i</span> = <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">sum</span> = <span style="color:#a6e22e">sum</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">io</span>:println(<span style="color:#a6e22e">sum</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>For this program the blocks in BIR representation and the corresponding WAT instructions are as follows.</p>
+<p><img src="/img/bir.png" alt="BIR"></p>
+<p>The <code>(%number)</code> format in the above represents a register number in the ballerina. The registers are mapped to local variables in wasm function. The complete code looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(module 
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> <span style="color:#e6db74">&#34;console&#34;</span> <span style="color:#e6db74">&#34;log&#34;</span> (func $println (param i64)))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">export</span> <span style="color:#e6db74">&#34;main&#34;</span> (func $main)) 
+</span></span><span style="display:flex;"><span>  (func $main 
+</span></span><span style="display:flex;"><span>    (local $0 i64) 
+</span></span><span style="display:flex;"><span>    (local $1 i64) 
+</span></span><span style="display:flex;"><span>    (local.set $0 
+</span></span><span style="display:flex;"><span>      (i64.const <span style="color:#ae81ff">0</span>)) 
+</span></span><span style="display:flex;"><span>    (local.set $1 
+</span></span><span style="display:flex;"><span>      (i64.const <span style="color:#ae81ff">0</span>)) 
+</span></span><span style="display:flex;"><span>    (loop $block$1$continue 
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">if</span> 
+</span></span><span style="display:flex;"><span>        (i64.lt_s 
+</span></span><span style="display:flex;"><span>          (local.get $0) 
+</span></span><span style="display:flex;"><span>          (i64.const <span style="color:#ae81ff">15</span>))
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">block</span>
+</span></span><span style="display:flex;"><span>          (local.set $0
+</span></span><span style="display:flex;"><span>            (i64.add
+</span></span><span style="display:flex;"><span>              (local.get $0)
+</span></span><span style="display:flex;"><span>              (i64.const <span style="color:#ae81ff">1</span>)))
+</span></span><span style="display:flex;"><span>          (local.set $1 
+</span></span><span style="display:flex;"><span>            (i64.add 
+</span></span><span style="display:flex;"><span>              (local.get $1) 
+</span></span><span style="display:flex;"><span>              (local.get $0))) 
+</span></span><span style="display:flex;"><span>          (br $block$1$continue)))) 
+</span></span><span style="display:flex;"><span>    (call $println
+</span></span><span style="display:flex;"><span>      (local.get $1))))
+</span></span></code></pre></div><h2 id="implementation-of-subset02">Implementation of subset02</h2>
+<p>Subset02 of the language contains the type <code>any</code>. A <code>boolean</code>, <code>integer</code> or <code>nil</code> value can be assigned to a variable of type <code>any</code> and a value assigned to an <code>any</code> can be casted back to its original type.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">x</span> = <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">any</span> <span style="color:#a6e22e">y</span> = <span style="color:#a6e22e">x</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">z</span> = &lt;<span style="color:#66d9ef">int</span>&gt;<span style="color:#a6e22e">y</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">boolean</span> <span style="color:#a6e22e">b</span> = <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">y</span> = <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">boolean</span> <span style="color:#a6e22e">c</span> = &lt;<span style="color:#a6e22e">boolean</span>&gt;<span style="color:#a6e22e">y</span>;
+</span></span></code></pre></div><p>The variable <code>y</code> which is an <code>any</code> is casted to an <code>int</code> and assigned to variable <code>z</code>. Thus there should be a way to identify the runtime type of the value assigned to a variable of type <code>any</code>, so we can ensure that the castings are valid.</p>
+<p>My first attempt in approaching this problem was to look at what nBallerina already does and replicate its behavior in the wasm side.</p>
+<p>In nBallerina a variable of type <code>any</code> is represented with the LLVM type <code>i64</code>. The first 56 bits out of 64 were used to represent the actual value; the remaining 8 bits were used as a tag. This tag contains information about the runtime type of the variable stored.</p>
+<p>Since <code>integers</code> are also assigned to <code>any</code>, what if we want to assign an integer whose binary representation uses more than 56 bits to a variable of type <code>any</code>. In this case nBallerina stores the actual value in the memory and then gets the memory address and stores this memory address in the first 56 bits. There is also a bit in the tag to represent whether the value is an immediate or a memory stored one.</p>
+<p><img src="/img/tag.png" alt="tagging"></p>
+<p>Wasm has type <code>i64</code> and it also has a memory to which we can store and retrieve values. So we should be able to replicate this in the wasm side right? Unfortunately no.</p>
+<p>When we are storing values in memory we need to consider garbage collection. wasm doesn&rsquo;t automatically garbage collect the values stored in memory. So this approach is not feasible.</p>
+<p>However wasm already has a Garbage Collection(GC) proposal. Even though this is a proposal there is an implemented MVP. This proposal introduces a set of reference types which are garbage collected. Namely the <code>i31ref</code>, <code>struct</code> and <code>array</code>.</p>
+<p><code>Struct</code> is a data type similar to a C struct where we can define a set of fields and their types.</p>
+<p>Numerical values which can be represented using 31 bits can be stored in an <code>i31</code>. <code>i31ref</code> is capable of storing references in the form of offsets in wasm linear memory, as well as numbers. Storing numbers in an <code>i31ref</code>, instead of wrapping in a <code>struct</code>, allows faster retrieval because it lives in the stack. So the plan was to use <code>i31</code> to store <code>booleans</code>, <code>struct</code> to store <code>ints</code> and <code>null</code> to store <code>null</code>. So the wasm type of a variable of type <code>any</code> would be a reference type (type <code>eqref</code> in wasm).</p>
+<p><img src="/img/tagint.png" alt="tagging an int"></p>
+<p>When a variable is to be assigned to a variable of type <code>any</code> it is converted to the respective reference type. As per the above diagram the <code>int x</code> is converted to a reference type <code>struct</code> using the <code>int_to_tagged()</code> function. We can give a type name, field type and field names when defining a struct. In this case it is a struct of type <code>$BoxedInt</code> with a field i64 to store the <code>int</code> value.</p>
+<p>In subset 02 <code>println</code> function was called with a variable of type <code>any</code>. When <code>println</code> is called with a value of simple basic type it is first converted to <code>any</code> type. Then in Javascript side <code>console.log</code> checks for the type of the reference it got and retrieves the value accordingly. The functions for converting to <code>any</code> type, retrieving the original value back from <code>any</code> type and retrieving the runtime type of <code>any</code> variable are implemented in wasm and exported to Javascript so it can use them as necessary.</p>
+<p><img src="/img/println.png" alt="println"></p>
+<p>This project is still going and currently I have finished subset09 of the language. I will cover more about my implementation of lists, maps and records in future articles. The progress I have made so far has been with the help of my mentor Manuranga Perera, nBallerina team lead James Clark and the nBallerina team.</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Repository: <a href="https://github.com/poorna2152/nballerina">https://github.com/poorna2152/nballerina</a></li>
+<li>nBallerina repository: <a href="https://github.com/ballerina-platform/nballerina">https://github.com/ballerina-platform/nballerina</a></li>
+<li>nBallerina wasm branch: <a href="https://github.com/ballerina-platform/nballerina/tree/wasm">https://github.com/ballerina-platform/nballerina/tree/wasm</a></li>
+<li>nBallerina runtime document: <a href="https://github.com/poorna2152/nballerina/blob/main/docs/rtvalue.md">https://github.com/poorna2152/nballerina/blob/main/docs/rtvalue.md</a></li>
+<li>Wasm use cases: <a href="https://madewithwebassembly.com/">https://madewithwebassembly.com/</a></li>
+<li>Wasm compilers: <a href="https://github.com/appcypher/awesome-wasm-langs">https://github.com/appcypher/awesome-wasm-langs</a></li>
+<li><a href="https://blog.container-solutions.com/webassembly-in-the-cloud">https://blog.container-solutions.com/webassembly-in-the-cloud</a></li>
+</ol>
+
+          </article>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div id="stickySideBar" class="sticky-sidebar">
+          
+          <aside class="toc">
+              <h5>
+                Table Of Contents
+              </h5>
+              <div class="toc-content">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#plan-for-wasm-backend">Plan for WASM Backend</a></li>
+    <li><a href="#implementation-of-subset01">Implementation of subset01</a></li>
+    <li><a href="#implementation-of-subset02">Implementation of subset02</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+              </div>
+          </aside>
+          
+
+          
+          <aside class="tags">
+            <h5>Tags</h5>
+            <ul class="tags-ul list-unstyled list-inline">
+              
+              <li class="list-inline-item"><a href="http://localhost:33111/tags/wasm"
+                target="_blank"
+              >wasm</a></li>
+              
+              <li class="list-inline-item"><a href="http://localhost:33111/tags/ballerina"
+                target="_blank"
+              >ballerina</a></li>
+              
+              <li class="list-inline-item"><a href="http://localhost:33111/tags/compiler"
+                target="_blank"
+              >compiler</a></li>
+              
+            </ul>
+          </aside>
+          
+
+          
+          <aside class="social">
+            <h5>Social</h5>
+            <div class="social-content">
+              <ul class="list-inline">
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://www.linkedin.com/feed/?shareActive=true&text=Developing%20a%20WebAssembly%20compiler%20backend%20for%20the%20Ballerina%20programming%20language http%3a%2f%2flocalhost%3a33111%2fblogs%2ftech%2fwasm-backend-copy%2f">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href='https://twitter.com/share?text=WebAssembly%20backend%20for%20Ballerina&url=http%3a%2f%2flocalhost%3a33111%2fblogs%2ftech%2fwasm-backend-copy%2f&hashtags=wasm%2cballerina%2ccompiler'>
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href="https://api.whatsapp.com/send?text=WebAssembly%20backend%20for%20Ballerina: http%3a%2f%2flocalhost%3a33111%2fblogs%2ftech%2fwasm-backend-copy%2f">
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item text-center">
+                  <a target="_blank" href='mailto:?subject=WebAssembly%20backend%20for%20Ballerina&amp;body=Check%20out%20this%20site http%3a%2f%2flocalhost%3a33111%2fblogs%2ftech%2fwasm-backend-copy%2f'>
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9 p-4">
+        
+      </div>
+    </div>
+  </div>
+  <button class="p-2 px-3" onclick="topFunction()" id="topScroll">
+    <i class="fas fa-angle-up"></i>
+  </button>
+</section>
+
+
+<div class="progress">
+  <div id="scroll-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<Script src="/js/scrollProgressBar.js"></script>
+
+
+<script>
+  var topScroll = document.getElementById("topScroll");
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topScroll.style.display = "block";
+    } else {
+      topScroll.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  
+  let stickySideBarElem = document.getElementById("stickySideBar");
+  let stickyNavBar =  false ;
+  if(stickyNavBar) {
+    let headerElem = document.getElementById("profileHeader");
+    let headerHeight = headerElem.offsetHeight + 15;
+    stickySideBarElem.style.top = headerHeight + "px";
+  } else {
+    stickySideBarElem.style.top = "50px";
+  }
+</script>
+
+
+<script src="/js/readingTime.js"></script>
+
+
+
+  </div><footer>
+    
+ 
+
+<div class="text-center pt-2">
+    
+
+    
+
+    
+
+    
+
+    
+</div><div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            
+                <div class="pb-2">
+                    <a href="http://localhost:33111/" title="Poorna Gunathilaka">
+                        <img alt="Footer logo" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-programmer-mobile-app-development-flaticons-lineal-color-flat-icons.png"
+                            height="40px" width="40px">
+                    </a>
+                </div>
+            
+            &copy; 2026  All Rights Reserved
+            <div class="text-secondary">
+                Made with
+                <span class="text-danger">
+                    &#10084;
+                </span>
+                and
+                <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
+                    title="Designed and developed by gurusabarish">
+                    Hugo Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</footer><script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+        document.documentElement.classList.remove('dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark');
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            document.documentElement.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+</script>
+
+
+    <script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  <section id="search-content" class="py-2">
+    <div class="container" id="search-results"></div>
+  </section>
+</body>
+
+</html>
