@@ -50,16 +50,23 @@ params:
         text: "Home"
 
     profileMode:
-        enabled: false 
-        title: Poorna Gunathilaka
+        enabled: true
+        title: "Hi there 👋"
+        subtitle: "Welcome to my blog"
+        imageUrl: ""
+        imageTitle: ""
+        imageWidth: 120
+        imageHeight: 120
         buttons:
-            - name: Posts
-              url: posts
+            - name: Tech
+              url: /tech/
+            - name: Fitness
+              url: /fitness/
 
     # home-info mode
-    homeInfoParams:
-        Title: "Hi there \U0001F44B"
-        Content: "Welcome to my blog. I’m Poorna Gunathilaka, currently pursuing a PhD in Computer Science at Virginia Tech. Here, I share my research, projects, and thoughts."
+    # homeInfoParams:
+    #     Title: "Hi there \U0001F44B"
+    #     Content: "Welcome to my blog. I’m Poorna Gunathilaka, currently pursuing a PhD in Computer Science at Virginia Tech. Here, I share my research, projects, and thoughts."
 
     socialIcons:
         - name: stackoverflow
