@@ -1,5 +1,10 @@
 {{ define "head" }}
 <meta name="description" content="{{ .Title }} | {{ .Site.Title }}">
+<!-- KaTeX for math rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
 <style>
   /* Heading styles for both themes */
   h1, h2, h3, h4, h5, h6 { color: inherit; }
@@ -20,6 +25,21 @@
   .post-content { line-height: 1.8; }
   .dark .post-content { color: #e0e0e0; }
   .post-content { color: #333; }
+  
+  /* Image styling - constrain width and center */
+  .post-content img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .post-content img {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
 </style>
 {{ end }}
 

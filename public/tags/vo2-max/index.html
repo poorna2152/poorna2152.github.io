@@ -108,17 +108,16 @@
   .blog-section h3 { font-weight: 600; margin-bottom: 2rem; }
   
    
-  :root:not([data-theme="light"]) .blog-section h3 { color: #fff; }
-  :root:not([data-theme="light"]) .card { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
-  :root:not([data-theme="light"]) .card-title { color: #fff; }
-  :root:not([data-theme="light"]) .card-text { color: #e0e0e0; }
+  .dark .blog-section h3 { color: #fff; }
+  .dark .card { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
+  .dark .card-title { color: #fff; }
+  .dark .card-text { color: #e0e0e0; }
   
    
-  [data-theme="light"] .blog-section h3 { color: #1a1a1a; }
-  [data-theme="light"] .card { border: 1px solid rgba(0,0,0,0.1); background: #ffffff; }
-  [data-theme="light"] .card-title { color: #1a1a1a; }
-  [data-theme="light"] .card-text { color: #333333; }
-  [data-theme="light"] .badge { background-color: #007bff !important; }
+  .blog-section h3 { color: #1a1a1a; }
+  .card { border: 1px solid rgba(0,0,0,0.1); background: #ffffff; }
+  .card-title { color: #1a1a1a; }
+  .card-text { color: #333333; }
   
   .badge { background-color: #007bff !important; }
 </style>
@@ -336,7 +335,7 @@ VO2 Max | Poorna Gunathilaka
                                     </p>
                                     <p class="card-text"><h3 id="what-is-mlir-and-why-does-it-matter">What is MLIR and Why Does It Matter?</h3>
 <p>Compiler infrastructure has historically been fragmented. You had one representation for the high-level language (like the TensorFlow graph) and a completely different one for the low-level machine code (like LLVM IR). Moving between these levels often resulted in lost optimization opportunities.</p>
-<p>MLIR (Multi-Level Intermediate Representation) solves this by providing a single, unified infrastructure. It allows compilers to define &ldquo;dialects&rdquo;—modular levels of abstraction that can mix and match. It serves as the backbone for modern machine learning compilers like XLA (used by TensorFlow, JAX, and PyTorch).</p></p>
+<p>MLIR (Multi-Level Intermediate Representation) solves this by providing a unified infrastructure. It allows compilers to define &ldquo;dialects&rdquo;—modular levels of abstraction that can mix and match. It serves as the backbone for modern machine learning compilers like XLA (used by TensorFlow, JAX, and PyTorch).</p></p>
                                     <a href="http://localhost:3000/blogs/tech/mlir-performance/" class="btn btn-sm btn-primary">Read More</a>
                                 </div>
                             </div>
