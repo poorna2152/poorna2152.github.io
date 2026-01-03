@@ -156,11 +156,6 @@ params:
           url: "https://www.moratuwa.ac.lk"
         location: "Sri Lanka"
         date: "Aug 2018 - Jul 2023"
-        GPA: "4.05 / 4.2"
-        content: |-
-          **Honors:** Dean's List for all 8 semesters
-
-          **Award:** Virtusa Award - Highest marks in Software Engineering Project (2021)
 
   # Projects Section
   projects:
